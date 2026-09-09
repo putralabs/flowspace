@@ -1,0 +1,65 @@
+# ===== AI assistant / editor folders (tidak perlu di-push) =====
+.cursor/
+.impeccable/
+.claude/
+.codex/
+.idea/
+.vscode/
+.zed/
+
+# Dokumen internal, tidak ikut push
+/prd.md
+/DESIGN.md
+/PRODUCT.md
+
+# ===== Secrets & local env (JANGAN push file ini) =====
+.env
+.env.local
+.env.*.local
+.env.backup
+.env.production
+*.key
+!.env.example
+
+# ===== Local data / dumps =====
+dump.rdb
+*.rdb
+*.sqlite
+*.sqlite-journal
+
+# ===== Dependencies & build output =====
+node_modules/
+vendor/
+dist/
+build/
+public/build/
+public/hot/
+public/storage/
+
+# ===== TypeScript / Vite cache =====
+*.tsbuildinfo
+.vite/
+
+# ===== Laravel =====
+storage/*.key
+storage/pail
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/logs/*
+bootstrap/cache/*
+.phpunit.result.cache
+.phpunit.cache/
+auth.json
+Homestead.json
+Homestead.yaml
+
+# ===== Logs & OS =====
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== Screenshots: DIPUSH (dokumentasi) — jangan ignore =====
+# screenshots/ sengaja tidak di-ignore

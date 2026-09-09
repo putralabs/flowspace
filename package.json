@@ -1,0 +1,12 @@
+{
+  "name": "flowspace",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Flowspace monorepo - run everything from the repo root",
+  "scripts": {
+    "dev": "node dev.mjs",
+    "stop": "node dev.mjs --shutdown",
+    "api": "node dev.mjs --only=api",
+    "web": "node dev.mjs --only=vite"
+  }
+}

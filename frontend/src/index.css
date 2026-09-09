@@ -1,0 +1,236 @@
+@import "@fontsource/libre-franklin/400.css";
+@import "@fontsource/libre-franklin/500.css";
+@import "@fontsource/libre-franklin/600.css";
+@import "@fontsource/libre-franklin/700.css";
+@import "@fontsource/libre-franklin/800.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #f7f6f2;
+  --surface: #fffdf9;
+  --surface-secondary: #efede4;
+  --border: #e0ddcf;
+  --border-strong: #c6c2ae;
+  --text-primary: #17150f;
+  --text-secondary: #55523f;
+  --text-muted: #66624e;
+
+  --accent: #4f46e5;
+  --accent-hover: #4438ca;
+  --accent-soft: #eef0fd;
+
+  --success: #2f7d5a;
+  --warning: #a66a1f;
+  --danger: #b94a48;
+  --info: #3f6fa8;
+}
+
+.dark {
+  --background: #14130f;
+  --surface: #1c1b16;
+  --surface-secondary: #24231d;
+  --border: #35342b;
+  --border-strong: #47453a;
+  --text-primary: #edece4;
+  --text-secondary: #c2c0b4;
+  --text-muted: #99968a;
+
+  --accent: #6d64f0;
+  --accent-hover: #7e76f3;
+  --accent-soft: #23233c;
+
+  --success: #4d9973;
+  --warning: #c28434;
+  --danger: #cf6664;
+  --info: #6b93c4;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --font-serif: var(--font-serif);
+  --color-surface: var(--surface);
+  --color-surface-secondary: var(--surface-secondary);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+
+  --font-sans: "Libre Franklin", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-serif: Georgia, Cambria, "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", "Cascadia Mono", "Segoe UI Mono", Menlo,
+    Consolas, monospace;
+
+  --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.05);
+  --shadow-popover: 0 8px 30px rgb(0 0 0 / 0.12);
+
+  --animate-fade-in: fade-in 150ms ease-out;
+  --animate-slide-up: slide-up 200ms ease-out;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--accent) 18%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 8px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--text-muted);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@utility text-display {
+  font-size: 32px;
+  line-height: 1.18;
+  font-weight: 600;
+  letter-spacing: -0.022em;
+}
+
+@utility text-page-title {
+  font-size: 23px;
+  line-height: 1.22;
+  font-weight: 600;
+  letter-spacing: -0.014em;
+}
+
+@utility text-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@utility bg-dot-grid {
+  background-image: radial-gradient(circle, var(--border-strong) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+@utility text-section-title {
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+/* ---- The Wire Desk (landing surface, light scene forced) ---- */
+
+.wire-root {
+  --background: #f7f6f2;
+  --surface: #fffdf9;
+  --surface-secondary: #efede4;
+  --border: #e0ddcf;
+  --border-strong: #c6c2ae;
+  --text-primary: #17150f;
+  --text-secondary: #55523f;
+  --text-muted: #66624e;
+}
+
+.font-news {
+  font-family: "Libre Franklin", "Helvetica Neue", Arial, sans-serif;
+}
+
+.font-wire {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* ---- Kanban board scrollbars: pinned to the bottom of the board viewport ---- */
+
+.kanban-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+  overscroll-behavior: contain;
+}
+
+.kanban-scroll::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+
+.kanban-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.kanban-scroll::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 8px;
+  border: 2px solid var(--background);
+}
+
+.kanban-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
