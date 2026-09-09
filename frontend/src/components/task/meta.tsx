@@ -30,7 +30,7 @@ export function StatusIcon({ status, className }: { status: TaskStatus; classNam
 export function PriorityIcon({ priority }: { priority: Priority }) {
   switch (priority) {
     case "none":
-      return <span title={priorityMeta.none.label} className="flex w-4 justify-center text-text-muted">–</span>;
+      return <span title={priorityMeta.none.label} className="flex w-4 justify-center text-text-muted">-</span>;
     case "low":
       return <ArrowDown size={13} className="text-text-muted" aria-label={priorityMeta.low.label} />;
     case "medium":

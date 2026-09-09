@@ -36,7 +36,7 @@ redis-cli ping  # harus jawab PONG kalau Redis jalan
 
 ### 1. Siapkan MySQL + Redis (pilih salah satu)
 
-**Opsi A — Docker (disarankan, paling gampang):**
+**Opsi A: Docker (disarankan, paling gampang)**
 
 ```bash
 docker compose up -d
@@ -45,7 +45,7 @@ docker compose ps
 
 File `docker-compose.yml` di root sudah disamakan dengan default `backend/.env.example` (`flowspace` / `root` / password kosong / port standar), jadi tidak perlu ubah `.env` untuk bagian database. Database `flowspace` dibuat otomatis oleh container.
 
-**Opsi B — MySQL/Redis manual (Laragon, XAMPP, brew, apt, dsb.):**
+**Opsi B: MySQL/Redis manual (Laragon, XAMPP, brew, apt, dsb.)**
 
 Pastikan kedua service jalan di port standar (`3306` dan `6379`), lalu bikin database kosong dulu:
 
@@ -90,7 +90,7 @@ npm install
 cd ..
 ```
 
-Tanpa `.env`, frontend tetap jalan karena kode punya fallback ke nilai yang sama dengan `.env.example`. Satu-satunya yang wajib sama adalah `VITE_REVERB_APP_KEY` (frontend) dengan `REVERB_APP_KEY` (backend) — default keduanya `flowspace`.
+Tanpa `.env`, frontend tetap jalan karena kode punya fallback ke nilai yang sama dengan `.env.example`. Satu-satunya yang wajib sama adalah `VITE_REVERB_APP_KEY` (frontend) dengan `REVERB_APP_KEY` (backend). Default keduanya `flowspace`.
 
 ### 4. Jalankan semuanya
 
