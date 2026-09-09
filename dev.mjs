@@ -98,8 +98,28 @@ async function waitForPort(port, timeoutMs, label) {
   return false;
 }
 
-/** Kill whatever listens on the given ports (Windows). */
+/** Kill whatever listens on the given ports (Windows pakai netstat, lainnya pakai lsof). */
 async function killPorts(ports) {
+  if (process.platform !== "win32") {
+    for (const port of ports) {
+      let out;
+      try {
+        out = execSync(`lsof -ti :${port}`, { shell: true }).toString();
+      } catch {
+        continue; // tidak ada yang listen di port ini
+      }
+      for (const pid of out.split(/\s+/)) {
+        if (!/^\d+$/.test(pid)) continue;
+        try {
+          process.kill(Number(pid), "SIGKILL");
+          console.log(`[dev] killed pid ${pid}`);
+        } catch {
+          // already gone
+        }
+      }
+    }
+    return;
+  }
   let out;
   try {
     out = execSync("netstat -ano", { shell: true }).toString();
@@ -139,7 +159,15 @@ function shutdown() {
   // 1. Kill managed process trees.
   for (const proc of children) {
     if (proc.pid && proc.exitCode === null) {
-      spawn("taskkill", ["/pid", String(proc.pid), "/T", "/F"], { shell: true });
+      if (process.platform === "win32") {
+        spawn("taskkill", ["/pid", String(proc.pid), "/T", "/F"], { shell: true });
+      } else {
+        try {
+          proc.kill("SIGKILL");
+        } catch {
+          // already gone
+        }
+      }
     }
   }
 
@@ -157,6 +185,7 @@ if (!only || only === "redis") {
   if (await portOpen(6379)) {
     log("redis", "sudah berjalan di :6379 (dilewati)");
   } else {
+    log("redis", "tidak terdeteksi di :6379 - coba 'docker compose up -d' atau jalankan redis-server manual");
     run("redis", "redis-server", [], ".");
     await waitForPort(6379, 10000, "redis");
   }
@@ -166,6 +195,7 @@ if (!only || only === "mysql") {
   if (await portOpen(3306)) {
     log("mysql", "sudah berjalan di :3306 (dilewati)");
   } else {
+    log("mysql", "tidak terdeteksi di :3306 - coba 'docker compose up -d' atau jalankan MySQL manual");
     run("mysql", "mysqld", ["--console"], ".");
     await waitForPort(3306, 20000, "mysql");
   }
