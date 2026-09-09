@@ -1,6 +1,6 @@
 # Flowspace
 
-Aplikasi project management dan kolaborasi tim realtime. Satu workspace bisa menampung beberapa project, tiap project punya board kanban (drag & drop), tampilan list, dan kalender. Task bisa dikomentari, di-mention, diberi label dan prioritas. Perubahan sekecil apa pun — pindah kartu, komentar baru, notifikasi — langsung muncul di layar semua anggota tanpa refresh.
+Aplikasi project management dan kolaborasi tim realtime. Satu workspace bisa menampung beberapa project, tiap project punya board kanban (drag & drop), tampilan list, dan kalender. Task bisa dikomentari, di-mention, diberi label dan prioritas. Perubahan sekecil apa pun, pindah kartu, komentar baru, atau notifikasi, langsung muncul di layar semua anggota tanpa refresh.
 
 ## Isinya
 
